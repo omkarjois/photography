@@ -320,10 +320,9 @@ export default function AlbumStory() {
                       <div className="relative z-10">
                         {/* Subtitle with line */}
                         <div className="flex items-center gap-6 mb-6">
-                          <span className="text-white/20 font-light text-5xl md:text-7xl">{number}</span>
                           <div className="w-12 h-[1px] bg-white/30"></div>
                           <span className="text-white/60 text-[10px] tracking-[0.2em] uppercase font-bold">
-                            Chapter {number}
+                            {number}
                           </span>
                         </div>
 
@@ -336,17 +335,6 @@ export default function AlbumStory() {
                         <p className="text-sm md:text-base text-white/70 leading-relaxed font-light mb-8 max-w-md">
                           {photo.description}
                         </p>
-
-                        {/* Action Link */}
-                        <button 
-                          onClick={() => {
-                            setLightboxIndex(index + 1);
-                            setLightboxOpen(true);
-                          }}
-                          className="flex items-center gap-2 text-white/60 text-[10px] tracking-widest uppercase hover:text-white transition-colors group"
-                        >
-                          read more <span className="transform group-hover:translate-x-1 transition-transform">-&gt;</span>
-                        </button>
                       </div>
                     </div>
 
