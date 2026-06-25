@@ -32,7 +32,7 @@ export default function Navbar() {
           className="flex items-center gap-3 cursor-pointer group pointer-events-auto"
           onClick={handleNav}
         >
-          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+          <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
           <span className="font-refular tracking-[0.2em] uppercase text-xs">Omkar jois photography</span>
         </Link>
         

@@ -5,6 +5,7 @@ import {
   doc, 
   writeBatch 
 } from 'firebase/firestore';
+import { portfolioData as defaultData } from '../data/portfolioData';
 
 // Helper to create standard URL-friendly ID from title
 const generateSlug = (title, year) => {

@@ -4,7 +4,7 @@ import { useGallery } from '../hooks/useGallery';
 import AlbumPanel from '../components/gallery/AlbumPanel';
 
 export default function Home() {
-  const { albums, loading } = useGallery();
+  const { albums, loading, error } = useGallery();
   const [activeId, setActiveId] = useState(null);
   const navigate = useNavigate();
 
@@ -21,12 +21,50 @@ export default function Home() {
     navigate(`/portfolio/${id}`);
   };
 
-  if (loading || albums.length === 0) {
+  if (loading) {
     return (
       <div className="w-full h-screen bg-black flex flex-col justify-center items-center">
         <div className="text-[10px] tracking-[0.4em] uppercase text-white/40 animate-pulse">
           Loading Archives
         </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-screen bg-black flex flex-col justify-center items-center px-6 text-center">
+        <div className="text-sm font-bold text-red-500 tracking-wider mb-2">
+          ERROR LOADING ARCHIVES
+        </div>
+        <div className="text-xs text-white/60 max-w-md leading-relaxed mb-6">
+          {error}
+        </div>
+        <button 
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs tracking-widest uppercase transition-all duration-300 rounded cursor-pointer"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  if (albums.length === 0) {
+    return (
+      <div className="w-full h-screen bg-black flex flex-col justify-center items-center px-6 text-center">
+        <div className="text-sm font-bold text-white/80 tracking-wider mb-2">
+          NO ARCHIVES FOUND
+        </div>
+        <div className="text-xs text-white/50 max-w-md leading-relaxed mb-6">
+          The database is connected but contains no collections. Go to the dashboard to seed default data or create a new album.
+        </div>
+        <button 
+          onClick={() => navigate('/login')}
+          className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs tracking-widest uppercase transition-all duration-300 rounded cursor-pointer"
+        >
+          Go to Admin Dashboard
+        </button>
       </div>
     );
   }
